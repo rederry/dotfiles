@@ -29,8 +29,8 @@ export PATH="$PATH:/usr/local/smlnj/bin"
 export PATH="/usr/local/sbin:$PATH"
 
 # bwh vps
-alias vps='ssh root@45.77.24.210 -p 22'
-alias vps2='ssh kangkang@45.77.24.210 -p 22'
+alias vps='ssh root@rederry.me -p 22'
+alias vps2='ssh kangkang@rederry.me -p 22'
 
 # kcp
 alias kcpstart='launchctl load ~/Library/LaunchAgents/kcptun.plist'
