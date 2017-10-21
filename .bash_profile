@@ -11,7 +11,6 @@ export GREP_OPTIONS='--color=auto'
 export PATH="$PATH:/usr/local/smlnj/bin"
 
 # homebrew
-# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 export PATH="/usr/local/sbin:$PATH"
 
 # vps
@@ -21,6 +20,9 @@ alias vultrkk='ssh kangkang@rederry.me'
 # kcp
 alias kcpstart='launchctl load ~/Library/LaunchAgents/kcptun.plist'
 alias kcpstop='launchctl unload ~/Library/LaunchAgents/kcptun.plist'
+
+# Git
+alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # convenient
 ip(){

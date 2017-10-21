@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/kangkang/Developer/CS106B-ProgrammingAbstractions/github-solution/gcc.dSYM'
+let g:netrw_dirhist_2='/Users/kangkang/Developer/Algs4 (Princeton)/Book Exercise/Chapter2.1'
+let g:netrw_dirhist_3='/Users/kangkang/Library/LaunchAgents'
+let g:netrw_dirhist_4='/Users/kangkang/.vim'
+let g:netrw_dirhist_5='/Users/kangkang'
+let g:netrw_dirhist_6='/Users/kangkang/.vim'
