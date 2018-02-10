@@ -2,7 +2,7 @@
 alias ll='ls -lG'
 
 # emacs
-alias emacs="emacs-25.3"
+# alias emacs="emacs-25.3"
 
 # grep highlight
 export GREP_OPTIONS='--color=auto'
@@ -23,13 +23,17 @@ alias kcpstop='launchctl unload ~/Library/LaunchAgents/kcptun.plist'
 
 # Git
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gc="git checkout"
+alias gst="git status"
+alias gcl="git clone"
+alias gcm="git commit -m"
 
 # convenient
 ip(){
    curl ip.cn/$1 
 }
 
-alias proxy='export http_proxy=http://0.0.0.0:1087;export https_proxy=http://0.0.0.0:1087;'
+alias px='export http_proxy=http://0.0.0.0:1087;export https_proxy=http://0.0.0.0:1087;'
 alias vrc='vim ~/.vimrc'
 alias brc='vim ~/.bash_profile'
 alias sourceb='source ~/.bash_profile'
