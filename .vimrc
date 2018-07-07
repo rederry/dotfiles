@@ -176,8 +176,8 @@ let g:airline_powerline_fonts = 1
 map 0 ^
 
 " Quick set mouse mode 
-nmap <leader>m :set mouse=a
-nmap <leader>nm :set mouse=
+nmap <leader>m :set mouse=a<cr>
+nmap <leader>nm :set mouse=<cr>
 
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
 nmap <D-j> mz:m+<cr>`z
