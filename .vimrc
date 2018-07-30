@@ -9,8 +9,8 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = " "
+let g:mapleader = " "
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -79,11 +79,26 @@ syntax enable
 set t_Co=256
 
 try
-    colorscheme desert
+    colorscheme molokai
 catch
 endtry
 
+" Highlight python self keyword
+augroup python
+    autocmd!
+    autocmd FileType python
+                \   syn keyword pythonSelf self
+                \ | highlight def link pythonSelf Special
+augroup end
+
 set background=dark
+
+" Set popup menu color(must set after background)
+" hi Pmenu ctermbg=gray
+
+" Set search highlight color
+hi Search ctermbg=LightYellow
+hi Search ctermfg=Black
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -112,6 +127,14 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+" YAML indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Use system clipboard
+set clipboard=unnamed
+" noremap <Leader>y "*y
+" noremap <Leader>p "*p
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -119,10 +142,10 @@ set wrap "Wrap lines
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
@@ -154,7 +177,7 @@ try
 catch
 endtry
 
-" Return to last edit position when opening files (You want this!)
+" Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
@@ -179,18 +202,6 @@ map 0 ^
 nmap <leader>m :set mouse=a<cr>
 nmap <leader>nm :set mouse=<cr>
 
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
-nmap <D-j> mz:m+<cr>`z
-nmap <D-k> mz:m-2<cr>`z
-vmap <D-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <D-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
 
 " Delete trailing white space on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
@@ -202,36 +213,23 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh :call CleanExtraSpaces()
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntastic
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickly open a buffer for scribble
 map <leader>q :e ~/buffer<cr>
+map <leader>vrc :e ~/.vimrc<cr>
 
 " Toggle paste mode
 set pastetoggle=<F2>
 
-" 开启代码折叠功能
-" 根据当前代码行的缩进来进行代码折叠
+" Code fold
 set foldmethod=indent
 set foldlevel=99
-" 将za快捷键映射到space空格键上
-nnoremap <space> za
+nnoremap <leader><space> za
 
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
@@ -242,18 +240,71 @@ set noswapfile
 " => NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Toggle NERDTree
+" map <leader>t :NERDTreeToggle<cr>
 map <F3> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 跳转到定义处
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fast jump 
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR> 
 
-"是否开启语义补全"
+" YCM will use the first python executable it finds in the PATH to run jedi. This means that if you are in a virtual environment and you start vim in that directory, the first python that YCM will find will be the one in the virtual environment
+let g:ycm_python_binary_path = 'python'
+
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
 let g:ycm_seed_identifiers_with_syntax=1
+
+" List like IDE
+" set completeopt=longest,menu
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => UltiSnips
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ctrlp
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntastic
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_mode_map = {
+    \ "mode": "passive",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": [] }
+
+let g:syntastic_auto_loc_list = 1
+
+nmap <F8> :SyntasticCheck<cr>
+nmap <leader>sr :SyntasticReset<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ACK
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>f :Ack 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => IndentLine
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Fugitive
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>gd :Gdiff<cr>
+nmap <leader>gst :Gstatus<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle
@@ -269,10 +320,20 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'vim-airline/vim-airline'
-
+Plugin 'nerdtree'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'mileszs/ack.vim'
+Plugin 'Yggdroot/indentLine'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -290,4 +351,3 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 execute pathogen#infect()
-
