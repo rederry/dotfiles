@@ -222,6 +222,7 @@ endif
 " Quickly open a buffer for scribble
 map <leader>q :e ~/buffer<cr>
 map <leader>vrc :e ~/.vimrc<cr>
+map <leader>src :so $MYVIMRC<cr>
 
 " Toggle paste mode
 set pastetoggle=<F2>
@@ -248,7 +249,7 @@ let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 " => YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast jump 
-nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR> 
+nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR> 
 
 " YCM will use the first python executable it finds in the PATH to run jedi. This means that if you are in a virtual environment and you start vim in that directory, the first python that YCM will find will be the one in the virtual environment
 let g:ycm_python_binary_path = 'python'
@@ -289,6 +290,7 @@ let g:syntastic_mode_map = {
 let g:syntastic_auto_loc_list = 1
 
 nmap <F8> :SyntasticCheck<cr>
+nmap <leader><F8> :SyntasticReset<cr>
 nmap <leader>sr :SyntasticReset<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -299,6 +301,7 @@ nmap <leader>f :Ack
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => IndentLine
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indentLine_char = '┊'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive
@@ -321,7 +324,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
-Plugin 'nerdtree'
+Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -349,5 +352,3 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
-execute pathogen#infect()
