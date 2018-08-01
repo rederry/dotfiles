@@ -291,7 +291,6 @@ let g:syntastic_auto_loc_list = 1
 
 nmap <F8> :SyntasticCheck<cr>
 nmap <leader><F8> :SyntasticReset<cr>
-nmap <leader>sr :SyntasticReset<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ACK
