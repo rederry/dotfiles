@@ -221,8 +221,10 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickly open a buffer for scribble
 map <leader>q :e ~/buffer<cr>
-map <leader>vrc :e ~/.vimrc<cr>
-map <leader>src :so $MYVIMRC<cr>
+map <leader>vc :e ~/.vimrc<cr>
+map <leader>so :so $MYVIMRC<cr>
+nmap <silent> <leader>d <Plug>DashSearch
+
 
 " Toggle paste mode
 set pastetoggle=<F2>
@@ -232,7 +234,7 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <leader><space> za
 
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
+" Turn backup off
 set nobackup
 set nowb
 set noswapfile
@@ -250,6 +252,8 @@ let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast jump 
 nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR> 
+set tags=./tags;/
+" set tags=/Users/kangkang/Developer/burnish/Dfjk4Finance/tags
 
 " YCM will use the first python executable it finds in the PATH to run jedi. This means that if you are in a virtual environment and you start vim in that directory, the first python that YCM will find will be the one in the virtual environment
 let g:ycm_python_binary_path = 'python'
@@ -291,6 +295,8 @@ let g:syntastic_auto_loc_list = 1
 
 nmap <F8> :SyntasticCheck<cr>
 nmap <leader><F8> :SyntasticReset<cr>
+nmap <leader>n :lnext<cr>
+nmap <leader>p :lprevious<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ACK
@@ -309,46 +315,43 @@ nmap <leader>gd :Gdiff<cr>
 nmap <leader>gst :Gstatus<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle
+" => Undo-tree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible              " be iMproved, required
-filetype off                  " required
+nnoremap <F5> :UndotreeToggle<cr>
+nmap <leader>ut :UndotreeFocus<cr>
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Persistent undo
+if has("persistent_undo")
+    set undodir=~/.vim/.undodir/
+    set undofile
+endif
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'kien/ctrlp.vim'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'mileszs/ack.vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'nvie/vim-flake8'
+nmap <silent> <F4> :TagbarToggle<CR>
+let g:tlWindowPosition = 1
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-plug
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
+
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'mileszs/ack.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'scrooloose/nerdcommenter'
+Plug 'nvie/vim-flake8'
+Plug 'rizzatti/dash.vim'
+Plug 'mbbill/undotree'
+Plug 'vim-scripts/TaskList.vim'
+Plug 'majutsushi/tagbar'
+
+call plug#end()
