@@ -20,9 +20,6 @@ export PATH="/usr/local/sbin:$PATH"
 # emacs
 # alias emacs="emacs-25.3"
 
-# vps
-alias vultr='ssh root@rederry.me'
-alias vultrkk='ssh kangkang@rederry.me'
 
 # kcp
 alias kcpstart='launchctl load ~/Library/LaunchAgents/kcptun.plist'
