@@ -6,31 +6,22 @@ export GREP_OPTIONS='--color=auto'
 
 export PS1='\h:\W\$ '
 
-# Setting PATH 
-# echo $PATH
-# export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS"
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-
 # SML
 export PATH="$PATH:/usr/local/smlnj/bin"
 
 # homebrew
 export PATH="/usr/local/sbin:$PATH"
 
-# emacs
-# alias emacs="emacs-25.3"
-
-
 # kcp
 alias kcpstart='launchctl load ~/Library/LaunchAgents/kcptun.plist'
 alias kcpstop='launchctl unload ~/Library/LaunchAgents/kcptun.plist'
 
 # Git
-alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gc="git checkout"
+alias glol="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gco="git checkout"
 alias gst="git status"
 alias gcl="git clone"
-alias gcm="git commit -m"
+alias gcmsg="git commit -m"
 
 # convenient
 ip(){
