@@ -63,9 +63,6 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Add a bit extra margin to the left
-set foldcolumn=1
-
 " Disaplay line number
 set nu
 
@@ -147,11 +144,9 @@ nmap <C-k> <C-W>k
 nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 
-" Close the current buffer
-map <leader>bd :Bclose<cr>:tabclose<cr>gT
-
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
+map <leader>bd :bd<cr>
 
 map <leader>l :bnext<cr>
 map <leader>h :bprevious<cr>
@@ -185,7 +180,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " => Status line
 """"""""""""""""""""""""""""""
 " Always show the status line
-set laststatus=2
+" set laststatus=2
 
 " Format the status line
 " set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
@@ -219,19 +214,17 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Quickly open a buffer for scribble
-map <leader>q :e ~/buffer<cr>
+map <leader>q :e<cr>
 map <leader>vc :e ~/.vimrc<cr>
 map <leader>so :so $MYVIMRC<cr>
 nmap <silent> <leader>d <Plug>DashSearch
 
+set updatetime=1000
 
 " Toggle paste mode
 set pastetoggle=<F2>
 
 " Code fold
-set foldmethod=indent
-set foldlevel=99
 nnoremap <leader><space> za
 
 " Turn backup off
@@ -246,6 +239,9 @@ set noswapfile
 " map <leader>t :NERDTreeToggle<cr>
 map <F3> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+" Open a NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe
@@ -255,7 +251,9 @@ nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR>
 set tags=./tags;/
 " set tags=/Users/kangkang/Developer/burnish/Dfjk4Finance/tags
 
-" YCM will use the first python executable it finds in the PATH to run jedi. This means that if you are in a virtual environment and you start vim in that directory, the first python that YCM will find will be the one in the virtual environment
+" YCM will use the first python executable it finds in the PATH to run jedi. 
+" This means that if you are in a virtual environment and you start vim in that directory, 
+" the first python that YCM will find will be the one in the virtual environment
 let g:ycm_python_binary_path = 'python'
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -292,6 +290,7 @@ let g:syntastic_mode_map = {
     \ "passive_filetypes": [] }
 
 let g:syntastic_auto_loc_list = 1
+let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
 
 nmap <F8> :SyntasticCheck<cr>
 nmap <leader><F8> :SyntasticReset<cr>
@@ -311,7 +310,7 @@ let g:indentLine_char = '┊'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>gd :Gdiff<cr>
+nmap <leader>gd :Gvdiff<cr>
 nmap <leader>gst :Gstatus<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -328,6 +327,15 @@ endif
 
 nmap <silent> <F4> :TagbarToggle<CR>
 let g:tlWindowPosition = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => gitgutter
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+nmap ghp <Plug>GitGutterPreviewHunk
+nmap ghs <Plug>GitGutterStageHunk
+nmap ghu <Plug>GitGutterUndoHunk
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-plug
@@ -353,5 +361,6 @@ Plug 'rizzatti/dash.vim'
 Plug 'mbbill/undotree'
 Plug 'vim-scripts/TaskList.vim'
 Plug 'majutsushi/tagbar'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
