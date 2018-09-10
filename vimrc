@@ -71,6 +71,7 @@ set nu
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable 
+nmap <leader>s :set synmaxcol=100
 
 " Enable 256 colors
 set t_Co=256
@@ -184,7 +185,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 " Format the status line
 " set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -221,10 +222,15 @@ nmap <silent> <leader>d <Plug>DashSearch
 
 set updatetime=1000
 
+nmap <leader>o o<ESC>k
+nmap <leader>O O<ESC>j
+
 " Toggle paste mode
 set pastetoggle=<F2>
 
 " Code fold
+set foldlevel=99
+set foldmethod=indent
 nnoremap <leader><space> za
 
 " Turn backup off
@@ -310,6 +316,7 @@ let g:indentLine_char = '┊'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set diffopt=filler,vertical
 nmap <leader>gd :Gvdiff<cr>
 nmap <leader>gst :Gstatus<cr>
 
@@ -325,7 +332,12 @@ if has("persistent_undo")
     set undofile
 endif
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => TagBar/TaskList
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <F4> :TagbarToggle<CR>
+let g:tagbar_sort = 0
+
 let g:tlWindowPosition = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -336,7 +348,7 @@ nmap ghs <Plug>GitGutterStageHunk
 nmap ghu <Plug>GitGutterUndoHunk
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-plug
+" => Vim-plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
