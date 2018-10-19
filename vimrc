@@ -17,6 +17,7 @@ nmap <leader>w :w!<cr>
 
 " Fast quitting
 nmap <leader>e :q<cr>
+nmap <leader>E :qa<cr>
 
 " set backspace work as usual
 set backspace=indent,eol,start
@@ -97,6 +98,14 @@ set background=dark
 " Set search highlight color
 hi Search ctermbg=LightYellow
 hi Search ctermfg=Black
+
+hi Visual term=reverse cterm=reverse 
+
+" Change cursor shape in different modes
+" Insert Replace Normal
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -255,7 +264,6 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Fast jump 
 nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR> 
 set tags=./tags;/
-" set tags=/Users/kangkang/Developer/burnish/Dfjk4Finance/tags
 
 " YCM will use the first python executable it finds in the PATH to run jedi. 
 " This means that if you are in a virtual environment and you start vim in that directory, 
@@ -369,7 +377,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'nvie/vim-flake8'
 Plug 'rizzatti/dash.vim'
 Plug 'mbbill/undotree'
-Plug 'vim-scripts/TaskList.vim'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
 
