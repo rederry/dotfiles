@@ -88,6 +88,9 @@ augroup python
     autocmd FileType python
                 \   syn keyword pythonSelf self
                 \ | highlight def link pythonSelf Special
+    autocmd FileType python
+                \   syn keyword pythonCls cls
+                \ | highlight def link pythonCls Special
 augroup end
 
 set background=dark
@@ -201,7 +204,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
-map 0 ^
+" map 0 ^
 
 " Quick set mouse mode 
 nmap <leader>m :set mouse=a<cr>
@@ -358,6 +361,13 @@ nmap ghu <Plug>GitGutterUndoHunk
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Automatic installation
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'

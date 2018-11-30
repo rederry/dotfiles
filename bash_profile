@@ -27,6 +27,7 @@ alias brc='vim ~/.bash_profile'
 alias src='source ~/.zshrc'
 alias vi='vim --noplugin'
 alias ec='emacsclient'
+alias dps='docker ps'
 
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
