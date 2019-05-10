@@ -1,8 +1,10 @@
-# python path
-export PYTHONPATH=.
-
 # vps
-alias vps='mosh rederry@35.221.190.54'
+alias sgcp='mosh rederry@35.201.135.125'
+alias s76='ssh root@47.97.203.76'
+alias s206='ssh root@47.97.237.206'
+alias sdev='ssh root@192.168.3.18'
+alias sxy='ssh root@120.26.42.102'
+alias shy='ssh root@120.26.49.166'
 
 # kcp
 alias kcpstart='launchctl load ~/Library/LaunchAgents/kcptun.plist'
@@ -10,7 +12,7 @@ alias kcpstop='launchctl unload ~/Library/LaunchAgents/kcptun.plist'
 
 # convenient
 ipad(){
-    curl ip.cn/$1
+    curl cip.cc/$1
 }
 
 alias ipy="ipython"
@@ -36,9 +38,15 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 source /usr/local/bin/virtualenvwrapper.sh
 
+# python path
+export PYTHONPATH=.
+# go path
+export GOPATH=$HOME/Developer/go
+
 # Homebrew
 export PATH="/usr/local/sbin:$PATH"
+export PATH=$PATH:$(go env GOPATH)/bin
 
-# Fix homebrew python path
+# Fix homebrew's python path
 alias lldb="PATH=/System/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH lldb"
 alias swift="PATH=/System/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH swift"

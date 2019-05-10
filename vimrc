@@ -17,7 +17,7 @@ nmap <leader>w :w!<cr>
 
 " Fast quitting
 nmap <leader>e :q<cr>
-nmap <leader>E :qa<cr>
+nmap <leader>qq :qa<cr>
 
 " set backspace work as usual
 set backspace=indent,eol,start
@@ -104,12 +104,6 @@ hi Search ctermfg=Black
 
 hi Visual term=reverse cterm=reverse 
 
-" Change cursor shape in different modes
-" Insert Replace Normal
-let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
@@ -129,13 +123,9 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
 set ai "Auto indent
 set si "Smart indent
-set wrap "Wrap lines
+nmap <leader>lb :set wrap!<cr>
 
 " YAML indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -230,7 +220,7 @@ endif
 map <leader>q :e<cr>
 map <leader>vc :e ~/.vimrc<cr>
 map <leader>so :so $MYVIMRC<cr>
-nmap <silent> <leader>d <Plug>DashSearch
+nmap <silent> <leader>d :Dash<cr>
 
 set updatetime=1000
 
@@ -261,12 +251,20 @@ let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => nerdcommenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDDefaultAlign = 'left'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast jump 
 nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR> 
+nnoremap <leader>t :tab split \| YcmCompleter GoToDefinition<CR>
 set tags=./tags;/
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
 " YCM will use the first python executable it finds in the PATH to run jedi. 
 " This means that if you are in a virtual environment and you start vim in that directory, 
@@ -329,7 +327,10 @@ let g:indentLine_char = '┊'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set diffopt=filler,vertical
 nmap <leader>gd :Gvdiff<cr>
-nmap <leader>gst :Gstatus<cr>
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gb :Gblame<cr>
+nmap <leader>dp :diffput<cr>
+nmap <leader>dg :diffget<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Undo-tree
@@ -372,7 +373,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --go-completer --clang-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'kien/ctrlp.vim'
