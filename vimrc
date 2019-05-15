@@ -291,12 +291,6 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 let g:UltiSnipsEditSplit="vertical"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ctrlp
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_mode_map = {
@@ -316,6 +310,12 @@ nmap <leader>p :lprevious<cr>
 " => ACK
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>f :Ag<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FZF
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>b :Buffers<cr>
+nmap <c-p> :FZF<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => IndentLine
@@ -376,7 +376,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --go-completer --clang-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'kien/ctrlp.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
