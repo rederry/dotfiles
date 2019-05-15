@@ -315,7 +315,7 @@ nmap <leader>p :lprevious<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ACK
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>f :Ack 
+nmap <leader>f :Ag<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => IndentLine
@@ -380,7 +380,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'mileszs/ack.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -390,5 +389,7 @@ Plug 'rizzatti/dash.vim'
 Plug 'mbbill/undotree'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
