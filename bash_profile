@@ -2,7 +2,6 @@
 alias sgcp='mosh rederry@35.201.135.125'
 alias s76='ssh root@47.97.203.76'
 alias s206='ssh root@47.97.237.206'
-alias sdev='ssh root@192.168.3.18'
 alias sxy='ssh root@120.26.42.102'
 alias shy='ssh root@120.26.49.166'
 
