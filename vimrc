@@ -197,7 +197,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " map 0 ^
 
 " Quick set mouse mode 
-nmap <leader>m :set mouse=a<cr>
+nmap <leader>mm :set mouse=a<cr>
 nmap <leader>nm :set mouse=<cr>
 
 
@@ -304,7 +304,7 @@ let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
 nmap <F8> :SyntasticCheck<cr>
 nmap <leader><F8> :SyntasticReset<cr>
 nmap <leader>n :lnext<cr>
-nmap <leader>p :lprevious<cr>
+nmap <leader>m :lprevious<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ACK
@@ -365,6 +365,10 @@ nmap ghu <Plug>GitGutterUndoHunk
 map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
+" In the quickfix window, <CR> is used to jump to the error under the
+" cursor, so undefine the mapping there.
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -380,9 +384,12 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
 
 " would be slow
 let g:go_fmt_command = "goimports"
+let g:go_list_type = "quickfix"
+let g:go_def_mode = 'gopls'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-plug
@@ -416,5 +423,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()

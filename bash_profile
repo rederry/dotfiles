@@ -1,7 +1,8 @@
 # vps
-alias sgcp='mosh rederry@35.201.135.125'
+alias sgcp='mosh rederry@34.80.149.174'
 alias s76='ssh root@47.97.203.76'
 alias s206='ssh root@47.97.237.206'
+alias shb='ssh root@118.31.3.34'
 alias sxy='ssh root@120.26.42.102'
 alias shy='ssh root@120.26.49.166'
 
