@@ -298,13 +298,9 @@ let g:syntastic_mode_map = {
     \ "active_filetypes": [],
     \ "passive_filetypes": [] }
 
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
-
-nmap <F8> :SyntasticCheck<cr>
-nmap <leader><F8> :SyntasticReset<cr>
-nmap <leader>n :lnext<cr>
-nmap <leader>m :lprevious<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ACK
@@ -405,7 +401,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --go-completer --clang-completer' }
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --clang-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vim-syntastic/syntastic'
@@ -424,5 +420,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'tpope/vim-unimpaired'
 
 call plug#end()
