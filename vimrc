@@ -224,9 +224,6 @@ nmap <silent> <leader>d :Dash<cr>
 
 set updatetime=1000
 
-nmap <leader>o o<ESC>k
-nmap <leader>O O<ESC>j
-
 " Toggle paste mode
 set pastetoggle=<F2>
 
@@ -244,7 +241,6 @@ set noswapfile
 " => NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Toggle NERDTree
-" map <leader>t :NERDTreeToggle<cr>
 map <F3> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 " Open a NERDTree automatically when vim starts up if no files were specified
@@ -291,16 +287,10 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 let g:UltiSnipsEditSplit="vertical"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntastic
+" => ALE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_mode_map = {
-    \ "mode": "passive",
-    \ "active_filetypes": [],
-    \ "passive_filetypes": [] }
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
+nmap <silent> <C-m> <Plug>(ale_previous)
+nmap <silent> <C-n> <Plug>(ale_next)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ACK
@@ -310,7 +300,6 @@ nmap <leader>f :Ag<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FZF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>b :Buffers<cr>
 nmap <c-p> :FZF<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -358,8 +347,6 @@ nmap ghu <Plug>GitGutterUndoHunk
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-go recommand
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 " In the quickfix window, <CR> is used to jump to the error under the
 " cursor, so undefine the mapping there.
@@ -404,7 +391,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --clang-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'

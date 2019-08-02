@@ -42,6 +42,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 export PYTHONPATH=.
 # go path
 export GOPATH=$HOME/Developer/go
+export GOPROXY=https://goproxy.io
 
 # Homebrew
 export PATH="/usr/local/sbin:$PATH"
