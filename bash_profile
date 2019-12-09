@@ -1,10 +1,5 @@
 # vps
-alias sgcp='mosh rederry@34.80.149.174'
-alias s76='ssh root@47.97.203.76'
-alias s206='ssh root@47.97.237.206'
-alias shb='ssh root@118.31.3.34'
-alias sxy='ssh root@120.26.42.102'
-alias shy='ssh root@120.26.49.166'
+alias sgcp='mosh rederry@34.80.172.153'
 
 # kcp
 alias kcpstart='launchctl load ~/Library/LaunchAgents/kcptun.plist'
@@ -30,10 +25,11 @@ alias src='source ~/.zshrc'
 alias vi='vim --noplugin'
 alias ec='emacsclient'
 alias dps='docker ps'
+alias dis='docker images'
 
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Developer/www
+export PROJECT_HOME=$HOME/Workspace/Burnish
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 source /usr/local/bin/virtualenvwrapper.sh
@@ -42,7 +38,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 export PYTHONPATH=.
 # go path
 export GOPATH=$HOME/Developer/go
-export GOPROXY=https://goproxy.io
+#export GOPROXY=https://goproxy.io
 
 # Homebrew
 export PATH="/usr/local/sbin:$PATH"

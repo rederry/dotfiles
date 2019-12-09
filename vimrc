@@ -230,7 +230,7 @@ set pastetoggle=<F2>
 " Code fold
 set foldlevel=99
 set foldmethod=indent
-nnoremap <leader><space> za
+"nnoremap <leader><space> za
 
 " Turn backup off
 set nobackup
@@ -242,7 +242,7 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Toggle NERDTree
 map <F3> :NERDTreeToggle<cr>
-let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+let NERDTreeIgnore=['\.pyc','\~$','\.swp','__pycache__']
 " Open a NERDTree automatically when vim starts up if no files were specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -260,12 +260,19 @@ nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>t :tab split \| YcmCompleter GoToDefinition<CR>
 set tags=./tags;/
 
-let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+"let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+
+let g:ycm_python_interpreter_path = 'python'
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \]
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
 
 " YCM will use the first python executable it finds in the PATH to run jedi. 
 " This means that if you are in a virtual environment and you start vim in that directory, 
 " the first python that YCM will find will be the one in the virtual environment
-let g:ycm_python_binary_path = 'python'
+"let g:ycm_python_binary_path = 'python'
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
@@ -408,5 +415,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-unimpaired'
+Plug 'jceb/vim-orgmode'
+Plug 'posva/vim-vue'
 
 call plug#end()
