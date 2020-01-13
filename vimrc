@@ -256,8 +256,10 @@ let g:NERDDefaultAlign = 'left'
 " => YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast jump 
-nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR> 
-nnoremap <leader>t :tab split \| YcmCompleter GoToDefinition<CR>
+if !has('nvim')
+    nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR> 
+    nnoremap <leader>t :tab split \| YcmCompleter GoToDefinition<CR>
+endif
 set tags=./tags;/
 
 "let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
@@ -281,6 +283,12 @@ let g:ycm_seed_identifiers_with_syntax=1
 " List like IDE
 " set completeopt=longest,menu
 
+" Django recommend
+let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+let g:ycm_complete_in_comments = 1 " Completion in comments
+let g:ycm_complete_in_strings = 1 " Completion in string
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => UltiSnips
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -298,6 +306,10 @@ let g:UltiSnipsEditSplit="vertical"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <C-m> <Plug>(ale_previous)
 nmap <silent> <C-n> <Plug>(ale_next)
+let g:ale_linters = {
+	\ 'go': ['gopls'],
+	\}
+let g:ale_python_pylint_options = '--load-plugins pylint_django'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ACK
@@ -381,6 +393,8 @@ let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
 let g:go_def_mode = 'gopls'
 
+let g:go_rename_command = 'gopls'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -395,8 +409,13 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --clang-completer' }
-Plug 'SirVer/ultisnips'
+if !has('nvim')
+    Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --clang-completer' }
+    Plug 'SirVer/ultisnips'
+endif
+if has('nvim')
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 Plug 'honza/vim-snippets'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive'

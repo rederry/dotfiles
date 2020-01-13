@@ -23,6 +23,7 @@ alias zrc='vim ~/.zshrc'
 alias brc='vim ~/.bash_profile'
 alias src='source ~/.zshrc'
 alias vi='vim --noplugin'
+alias v='nvim'
 alias ec='emacsclient'
 alias dps='docker ps'
 alias dis='docker images'
@@ -47,3 +48,5 @@ export PATH=$PATH:$(go env GOPATH)/bin
 # Fix homebrew's python path
 alias lldb="PATH=/System/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH lldb"
 alias swift="PATH=/System/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH swift"
+
+export PATH="$HOME/.cargo/bin:$PATH"
