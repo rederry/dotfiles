@@ -19,6 +19,8 @@ nmap <leader>w :w!<cr>
 nmap <leader>e :q<cr>
 nmap <leader>qq :qa<cr>
 
+nmap <space><space> :Commands<cr>
+
 " set backspace work as usual
 set backspace=indent,eol,start
 
@@ -183,12 +185,13 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " => Status line
 """"""""""""""""""""""""""""""
 " Always show the status line
-" set laststatus=2
+"set laststatus=2
 
 " Format the status line
 " set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 "let g:airline_powerline_fonts = 1
 
+let g:airline#extensions#tabline#enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -312,14 +315,23 @@ let g:ale_linters = {
 let g:ale_python_pylint_options = '--load-plugins pylint_django'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ACK
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>f :Ag<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FZF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <c-p> :FZF<cr>
+nmap <leader>fb :Buffers<cr>
+" Git files (git ls-files)
+nmap <leader>fg :GFiles<cr>
+" ag search result (ALT-A to select all, ALT-D to deselect all)
+nmap <leader>ff :Ag<cr>
+" Command history
+nmap <leader>fh :History:<cr>
+" Search history
+nmap <leader>fs :History/<cr>
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => IndentLine
@@ -436,5 +448,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'jceb/vim-orgmode'
 Plug 'posva/vim-vue'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 call plug#end()
