@@ -1,5 +1,8 @@
 {
+  "java.home":"/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home",
   "python.jediEnabled": true,
+  "python.linting.pylintArgs": ["--load-plugins pylint_django"],
+  "diagnostic.displayByAle": true,
   "languageserver": {
     "golang": {
       "command": "gopls",

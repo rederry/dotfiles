@@ -313,6 +313,9 @@ let g:ale_linters = {
 	\ 'go': ['gopls'],
 	\}
 let g:ale_python_pylint_options = '--load-plugins pylint_django'
+if has('nvim')
+    let g:ale_disable_lsp = 1
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FZF
@@ -383,6 +386,8 @@ nnoremap <leader>a :cclose<CR>
 " cursor, so undefine the mapping there.
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
+nmap <M-n> :cnext<CR>
+nmap <M-m> :cprevious<CR>
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -427,6 +432,7 @@ if !has('nvim')
 endif
 if has('nvim')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 endif
 Plug 'honza/vim-snippets'
 Plug 'dense-analysis/ale'

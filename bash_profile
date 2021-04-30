@@ -33,7 +33,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Workspace/Burnish
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-source /usr/local/bin/virtualenvwrapper.sh
+#source /usr/local/bin/virtualenvwrapper.sh
 
 # python path
 export PYTHONPATH=.
@@ -42,8 +42,8 @@ export GOPATH=$HOME/Developer/go
 #export GOPROXY=https://goproxy.io
 
 # Homebrew
-export PATH="/usr/local/sbin:$PATH"
-export PATH=$PATH:$(go env GOPATH)/bin
+#export PATH="/usr/local/sbin:$PATH"
+#export PATH=$PATH:$(go env GOPATH)/bin
 
 # Fix homebrew's python path
 alias lldb="PATH=/System/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH lldb"
