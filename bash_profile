@@ -43,10 +43,10 @@ export GOPATH=$HOME/Developer/go
 
 # Homebrew
 #export PATH="/usr/local/sbin:$PATH"
-#export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:$(go env GOPATH)/bin
 
 # Fix homebrew's python path
 alias lldb="PATH=/System/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH lldb"
 alias swift="PATH=/System/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH swift"
 
-export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"

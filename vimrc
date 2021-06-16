@@ -372,11 +372,30 @@ let g:tagbar_sort = 0
 let g:tlWindowPosition = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => gitgutter
+" => vim-signify
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap ghp <Plug>GitGutterPreviewHunk
-nmap ghs <Plug>GitGutterStageHunk
-nmap ghu <Plug>GitGutterUndoHunk
+" default updatetime 4000ms is not good for async update
+set updatetime=100
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-easymotion
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+"nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-go recommand
@@ -434,6 +453,11 @@ if has('nvim')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 endif
+if has('nvim') || has('patch-8.0.902')
+  Plug 'mhinz/vim-signify'
+else
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
 Plug 'honza/vim-snippets'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive'
@@ -446,7 +470,6 @@ Plug 'nvie/vim-flake8'
 Plug 'rizzatti/dash.vim'
 Plug 'mbbill/undotree'
 Plug 'majutsushi/tagbar'
-Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -455,5 +478,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'jceb/vim-orgmode'
 Plug 'posva/vim-vue'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'triglav/vim-visual-increment'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
